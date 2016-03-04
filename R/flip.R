@@ -51,7 +51,7 @@ Flip <- function(fn,pos) {
     pos <- setdiff(rev(seq(length(args))),
                    grep("...",names(args)))
   } else if(is.character(pos)) {
-    pos <- sapply(pos,grep,names(args))
+    pos <- sapply(sprintf("^%s$",pos),grep,names(args),USE.NAMES=FALSE)
   }
 
   ## error checking
