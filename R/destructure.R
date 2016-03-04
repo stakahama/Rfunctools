@@ -35,7 +35,7 @@
 #'
 #' @references
 #'
-#' https://stat.ethz.ch/pipermail/r-help/2004-June/053343.html
+#' [1]https://stat.ethz.ch/pipermail/r-help/2004-June/053343.html
 #'
 #' @export
 #'
@@ -45,9 +45,7 @@
 #' Destructure[QR,,QRaux]  <- qr(c(1,1:3,3:1))
 #' Destructure[,Green,Blue]  <- col2rgb("aquamarine")
 
-Destructure <- structure(NA,class="result")
-
-"[<-.result" <- function(x,...,value) {
+`[<-.result` <- function(x,...,value) {
    args <- as.list(match.call())
    args <- args[-c(1:2,length(args))]
    length(value) <- length(args)
@@ -56,5 +54,6 @@ Destructure <- structure(NA,class="result")
      if(!missing(a)) eval.parent(substitute(a <- v,list(a=a,v=value[[i]])))
    }
    x
-}
+ }
 
+Destructure <- structure(NA,class="result")
