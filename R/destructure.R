@@ -55,5 +55,3 @@
    }
    x
  }
-
-Destructure <- structure(NA,class="result")

@@ -1,0 +1,5 @@
+library(devtools)
+library(roxygen2)
+devtools::document()
+setwd("..")
+install("Rfunctools")
