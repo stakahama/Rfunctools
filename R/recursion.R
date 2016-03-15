@@ -66,5 +66,5 @@ Recursetree <- function(x) {
 Recursenode <- function(x) {
   xlist <- as.list(x)
   (if(length(xlist)==1) x
-  else Recurselist(xlist))
+  else Recursetree(xlist))
 }

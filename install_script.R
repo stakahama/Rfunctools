@@ -1,5 +1,5 @@
 library(devtools)
 library(roxygen2)
-devtools::document()
+document()
 setwd("..")
 install("Rfunctools")
