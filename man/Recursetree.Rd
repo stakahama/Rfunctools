@@ -21,7 +21,7 @@ Foo <- function(x,y) {
   x / y
 }
 
-parsetree <- Recursetree(as.list(body(Foo)))
+parsetree <- Recursetree(body(Foo))
 
 treeaslist <- Recursetree(list(1:5))
 }

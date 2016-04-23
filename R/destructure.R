@@ -22,30 +22,29 @@
 ##
 ################################################################################
 
-#' Destructure, `[<-.result`
+#' DBind, `[<-.result`
 #'
-#' Mimick behavior of destructuring bind (so named in Lisp). Also called  sequence unpacking in Python, and implemented by \code{deal} in MATLAB.
-#' This definition is taken directly from G. Grothendieck's implementation of \code{List} as posted in R-help[1].
+#' Mimic behavior of \code{destructuring-bind} (so named in Lisp). Also called  sequence unpacking in Python, and implemented by \code{deal} in MATLAB. This R implementation is taken directly from G. Grothendieck's implementation of \code{List} as posted in R-help[1].
 #'
 #' @param x function first argument
 #' @param ... function additional argument
 #' @param value values to be assigned in parent frame
 #'
-#' @return produces side effect of assignment of multiple values in the parent frame
+#' @return Produces side effect of assigning multiple values in the parent frame.
 #'
 #' @references
 #'
-#' [1]https://stat.ethz.ch/pipermail/r-help/2004-June/053343.html
+#' [1] https://stat.ethz.ch/pipermail/r-help/2004-June/053343.html
 #'
 #' @export
 #'
 #' @examples
 #'
 #' ## As provided by G. Grothendieck in R-help:
-#' Destructure[QR,,QRaux]  <- qr(c(1,1:3,3:1))
-#' Destructure[,Green,Blue]  <- col2rgb("aquamarine")
+#' DBind[QR,,QRaux]  <- qr(c(1,1:3,3:1))
+#' DBind[,Green,Blue]  <- col2rgb("aquamarine")
 
-`[<-.result` <- function(x,...,value) {
+`[<-.result` <- function(x, ..., value) {
    args <- as.list(match.call())
    args <- args[-c(1:2,length(args))]
    length(value) <- length(args)

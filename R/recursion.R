@@ -38,15 +38,17 @@
 #'   x / y
 #' }
 #'
-#' parsetree <- Recursetree(as.list(body(Foo)))
+#' parsetree <- Recursetree(body(Foo))
 #'
 #' treeaslist <- Recursetree(list(1:5))
 
+## Recursetree <- function(x, fn) {
+##   if(length(x)==1) x else
+##   lapply(fn(x),Recursetree, fn)
+## }
+
 Recursetree <- function(x) {
-  ## example
-  ## parsetree <- Recurselist(as.list(body(graphics::axis)))
-  ## calls Explorenode
-  rapply(x,Recursenode,how="list")
+  rapply(as.list(x),Recursenode,how="list")
 }
 
 #' Recursenode
@@ -64,7 +66,6 @@ Recursetree <- function(x) {
 #' #See Recursetree()
 
 Recursenode <- function(x) {
-  xlist <- as.list(x)
-  (if(length(xlist)==1) x
-  else Recursetree(xlist))
+  (if(length(x)==1) x
+  else Recursetree(x))
 }

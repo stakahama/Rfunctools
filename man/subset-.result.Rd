@@ -2,7 +2,7 @@
 % Please edit documentation in R/destructure.R
 \name{[<-.result}
 \alias{[<-.result}
-\title{Destructure, `[<-.result`}
+\title{DBind, `[<-.result`}
 \usage{
 \method{[}{result}(x, ...) <- value
 }
@@ -14,19 +14,18 @@
 \item{value}{values to be assigned in parent frame}
 }
 \value{
-produces side effect of assignment of multiple values in the parent frame
+Produces side effect of assigning multiple values in the parent frame.
 }
 \description{
-Mimick behavior of destructuring bind (so named in Lisp). Also called  sequence unpacking in Python, and implemented by \code{deal} in MATLAB.
-This definition is taken directly from G. Grothendieck's implementation of \code{List} as posted in R-help[1].
+Mimic behavior of \code{destructuring-bind} (so named in Lisp). Also called  sequence unpacking in Python, and implemented by \code{deal} in MATLAB. This R implementation is taken directly from G. Grothendieck's implementation of \code{List} as posted in R-help[1].
 }
 \examples{
 
 ## As provided by G. Grothendieck in R-help:
-Destructure[QR,,QRaux]  <- qr(c(1,1:3,3:1))
-Destructure[,Green,Blue]  <- col2rgb("aquamarine")
+DBind[QR,,QRaux]  <- qr(c(1,1:3,3:1))
+DBind[,Green,Blue]  <- col2rgb("aquamarine")
 }
 \references{
-[1]https://stat.ethz.ch/pipermail/r-help/2004-June/053343.html
+[1] https://stat.ethz.ch/pipermail/r-help/2004-June/053343.html
 }
 
