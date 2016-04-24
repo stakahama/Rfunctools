@@ -24,10 +24,10 @@
 
 #' Recursetree
 #'
-#' This function recurses a nested list to return every element of a node as a list element. One application is to obtain the parse tree of a function. Calls Recursenode().
+#' This function recurses a nested list to return every element of a node as a list element. One application is to obtain the parse tree of a function.
 #'
 #' @param x list object
-#' 
+#'
 #' @return Parse tree of a function.
 #'
 #' @export
@@ -35,37 +35,12 @@
 #' @examples
 #'
 #' Foo <- function(x,y) {
-#'   x / y
+#'   z <- x / (2 * y)
 #' }
 #'
 #' parsetree <- Recursetree(body(Foo))
-#'
-#' treeaslist <- Recursetree(list(1:5))
 
-## Recursetree <- function(x, fn) {
-##   if(length(x)==1) x else
-##   lapply(fn(x),Recursetree, fn)
-## }
-
-Recursetree <- function(x) {
-  rapply(as.list(x),Recursenode,how="list")
-}
-
-#' Recursenode
-#'
-#' This function decides if element is a single-element list or can be further branched. Called by Recursetree().
-#'
-#' @param x a node; possible list object
-#'
-#' @return This function returns either the node or the result of further recursion.
-#' 
-#' @export
-#'
-#' @examples
-#'
-#' #See Recursetree()
-
-Recursenode <- function(x) {
-  (if(length(x)==1) x
-  else Recursetree(x))
+Recursetree <- function(x, fn=identity) {
+  if(length(x)==1) x else
+  lapply(fn(x), Recursetree, fn)
 }

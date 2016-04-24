@@ -4,7 +4,7 @@
 \alias{Recursetree}
 \title{Recursetree}
 \usage{
-Recursetree(x)
+Recursetree(x, fn = identity)
 }
 \arguments{
 \item{x}{list object}
@@ -13,16 +13,14 @@ Recursetree(x)
 Parse tree of a function.
 }
 \description{
-This function recurses a nested list to return every element of a node as a list element. One application is to obtain the parse tree of a function. Calls Recursenode().
+This function recurses a nested list to return every element of a node as a list element. One application is to obtain the parse tree of a function.
 }
 \examples{
 
 Foo <- function(x,y) {
-  x / y
+  z <- x / (2 * y)
 }
 
 parsetree <- Recursetree(body(Foo))
-
-treeaslist <- Recursetree(list(1:5))
 }
 

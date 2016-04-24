@@ -44,14 +44,13 @@
 #' Flip(Foo,c("y","z"))
 
 
-Flip <- function(fn,pos) {
+Flip <- function(fn, pos) {
 
   args <- formals(fn)
   if(missing(pos)) {
-    pos <- setdiff(rev(seq(length(args))),
-                   grep("...",names(args)))
+    pos <- setdiff(rev(seq(length(args))), grep("...", names(args)))
   } else if(is.character(pos)) {
-    pos <- sapply(sprintf("^%s$",pos),grep,names(args),USE.NAMES=FALSE)
+    pos <- sapply(sprintf("^%s$", pos), grep, names(args), USE.NAMES=FALSE)
   }
 
   ## error checking
@@ -61,6 +60,6 @@ Flip <- function(fn,pos) {
     stop("'pos' is greater than number of arguments")
 
   fn.copy <- fn # copy
-  formals(fn.copy) <- c(args[pos],args[-pos])
+  formals(fn.copy) <- c(args[pos], args[-pos])
   fn.copy
 }
