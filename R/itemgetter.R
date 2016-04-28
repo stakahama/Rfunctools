@@ -54,7 +54,7 @@ Itemgetter <- function(...) {
   .args <- list(...)
   fn <- if(all(sapply(.args, function(x)
   (!is.logical(x) && length(x)==1)))) `[[` else `[`
-  function(X) do.call(fn,c(list(X), .args))
+  function(X) do.call(fn, c(list(X), .args))
 }
 
 
@@ -79,5 +79,5 @@ Itemgetter <- function(...) {
 
 Let <- function(...) {
   .args <- rev(as.list(match.call())[-1L])
-  eval(.args[[1]], .args[-1], enclos = parent.frame())
+  eval(.args[[1L]], .args[-1L], enclos = parent.frame())
 }
