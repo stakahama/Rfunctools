@@ -23,19 +23,19 @@
 ################################################################################
 
 
-#' CopyPkgFiles, SyncPkgFiles
+#' PkgFilesCopy, PkgFilesSync
 #'
 #' Copy or sync package files (e.g., from \code{inst/}) to desired location.
 #'
+#' @param package [character] Name of package.
+#' @param files [character] Name of package files.
 #' @param path [character] Location to copy files. If present directory (\code{"."}) or directory exists, only contents are copied. Otherwise, a directory of this name is created and contents are copied there.
 #' @param addargs [character] Arguments to rsync for \code{SyncPkgFiles}. Unused by \code{CopyPkgFiles}.
-#' @param files [character] Name of package files.
-#' @param package [character] Name of package.
 #'
 #' @return Side effect of copying example files to \code{path}.
 #' @export
 
-CopyPkgFiles <- function(path=".", addargs, files, package) {
+PkgFilesCopy <- function(package, files, path=".") {
   CopyContents <- function(remote, local) {
     if(file.info(local)[["isdir"]]) {
       for(f in Sys.glob(file.path(remote,"*")))
@@ -45,23 +45,16 @@ CopyPkgFiles <- function(path=".", addargs, files, package) {
     }
   }
   location <- system.file(files, package=package)
-  if(file.info(location)[["isdir"]])
-    if(!file.exists(path)) {
-      parts <- split(path, .Platform$file.sep)[[1]]
-      for(i in seq_along(parts)) {
-        current.path <- do.call(file.path, as.list(parts[1:i]))
-        if(!file.exists(current.path))
-          dir.create(current.path)
-      }
-    }
+  if(file.info(location)[["isdir"]] && !file.exists(path))
+      dir.create(path, recursive=TRUE)
   CopyContents(location, path)
 }
 
 
-#' @describeIn CopyPkgFiles Sync files
+#' @describeIn PkgFilesCopy Sync files.
 #' @export
 
-SyncPkgFiles <- function(path=".", addargs="", files, package) {
+PkgFilesSync <- function(package, files, path=".", addargs="") {
   location <- system.file(files, package=package)
   if(file.info(location)[["isdir"]] && file.exists(path)) {
     system(sprintf("rsync -arvupP %s %s/ %s/", addargs, location, path))
