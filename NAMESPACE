@@ -2,6 +2,7 @@
 
 S3method("[<-",result)
 S3method(ResetIndex,data.frame)
+S3method(ResetIndex,matrix)
 S3method(SetIndex,default)
 S3method(Splitc,matrix)
 S3method(Splitr,matrix)

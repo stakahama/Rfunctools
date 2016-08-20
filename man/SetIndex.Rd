@@ -3,6 +3,7 @@
 \name{SetIndex}
 \alias{ResetIndex}
 \alias{ResetIndex.data.frame}
+\alias{ResetIndex.matrix}
 \alias{SetIndex}
 \alias{SetIndex.default}
 \title{SetIndex, ResetIndex}
@@ -14,6 +15,8 @@ SetIndex(x, ...)
 ResetIndex(x, ...)
 
 \method{ResetIndex}{data.frame}(x, index = "index")
+
+\method{ResetIndex}{matrix}(x, ...)
 }
 \arguments{
 \item{x}{[data.frame or character matrix] table}
@@ -31,5 +34,7 @@ Set index like python's DataFrame.set_index(,inplace=False) but works with data 
 \item \code{default}: Sets row name to value of \code{index} and removes \code{index} from matix/data frame.
 
 \item \code{data.frame}: Reset index (like \code{dplyr::add_rownames} or pandas \code{DataFrame.reset_index(,inplace=False)}). Returns data frame with index in first position.
+
+\item \code{matrix}: Call as.data.frame on matrix and then apply ResetIndex.data.frame.
 }}
 

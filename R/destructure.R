@@ -24,7 +24,9 @@
 
 #' DBind, `[<-.result`
 #'
-#' Mimic behavior of \code{destructuring-bind} (so named in Lisp). Also called  sequence unpacking in Python, and implemented by \code{deal} in MATLAB. This R implementation is taken directly from G. Grothendieck's implementation of \code{List} as posted in R-help[1].
+#' Assign elements of a list to multiple variable names in current namespace.
+#'
+#' This operation mimics the behavior of \code{destructuring-bind} (Lisp), sequence unpacking (Python), and \code{deal} (MATLAB). This R implementation is taken directly from G. Grothendieck's implementation of \code{List} as posted in R-help[1] but renamed as \code{DBind}. While returning multiple values from a function is considered unfunctional, the idea is to compose multiple operations (funciton invocation and subsequent assignment of list contents) into one.
 #'
 #' @param x function first argument
 #' @param ... function additional argument
@@ -43,6 +45,10 @@
 #' ## As provided by G. Grothendieck in R-help:
 #' DBind[QR,,QRaux]  <- qr(c(1,1:3,3:1))
 #' DBind[,Green,Blue]  <- col2rgb("aquamarine")
+#'
+#' ## Additional examples:
+#' x <- list(a=1, b=2)
+#' DBind[a, b] <- x
 
 `[<-.result` <- function(x, ..., value) {
    args <- as.list(match.call())

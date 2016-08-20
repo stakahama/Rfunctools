@@ -52,3 +52,10 @@ ResetIndex <- function(x, ...)
 ResetIndex.data.frame <- function(x, index="index") {
   cbind(setNames(list(row.names(x)), index), `row.names<-`(x, NULL))
 }
+
+#' @describeIn SetIndex Call as.data.frame on matrix and then apply ResetIndex.data.frame.
+#' @export
+
+ResetIndex.matrix <- function(x, ...) {
+  ResetIndex(as.data.frame(x), ...)
+}

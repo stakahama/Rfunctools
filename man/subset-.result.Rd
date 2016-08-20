@@ -17,13 +17,20 @@
 Produces side effect of assigning multiple values in the parent frame.
 }
 \description{
-Mimic behavior of \code{destructuring-bind} (so named in Lisp). Also called  sequence unpacking in Python, and implemented by \code{deal} in MATLAB. This R implementation is taken directly from G. Grothendieck's implementation of \code{List} as posted in R-help[1].
+Assign elements of a list to multiple variable names in current namespace.
+}
+\details{
+This operation mimics the behavior of \code{destructuring-bind} (Lisp), sequence unpacking (Python), and \code{deal} (MATLAB). This R implementation is taken directly from G. Grothendieck's implementation of \code{List} as posted in R-help[1] but renamed as \code{DBind}. While returning multiple values from a function is considered unfunctional, the idea is to compose multiple operations (funciton invocation and subsequent assignment of list contents) into one.
 }
 \examples{
 
 ## As provided by G. Grothendieck in R-help:
 DBind[QR,,QRaux]  <- qr(c(1,1:3,3:1))
 DBind[,Green,Blue]  <- col2rgb("aquamarine")
+
+## Additional examples:
+x <- list(a=1, b=2)
+DBind[a, b] <- x
 }
 \references{
 [1] https://stat.ethz.ch/pipermail/r-help/2004-June/053343.html
