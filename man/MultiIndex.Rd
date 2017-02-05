@@ -2,9 +2,21 @@
 % Please edit documentation in R/MultiIndex.R
 \name{MultiIndex}
 \alias{MultiIndex}
+\alias{MultiIndex.data.frame}
+\alias{MultiIndex.default}
+\alias{MultiIndex.list}
+\alias{MultiIndex.matrix}
 \title{MultiIndex}
 \usage{
-MultiIndex(x, collapse = ", ", format = identity)
+MultiIndex(x, ...)
+
+\method{MultiIndex}{default}(x, collapse = ", ", format = identity)
+
+\method{MultiIndex}{matrix}(x, ...)
+
+\method{MultiIndex}{data.frame}(x, ...)
+
+\method{MultiIndex}{list}(x, ...)
 }
 \arguments{
 \item{x}{vector}
