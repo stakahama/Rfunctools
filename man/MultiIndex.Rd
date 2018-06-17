@@ -2,10 +2,10 @@
 % Please edit documentation in R/MultiIndex.R
 \name{MultiIndex}
 \alias{MultiIndex}
-\alias{MultiIndex.data.frame}
 \alias{MultiIndex.default}
-\alias{MultiIndex.list}
 \alias{MultiIndex.matrix}
+\alias{MultiIndex.data.frame}
+\alias{MultiIndex.list}
 \title{MultiIndex}
 \usage{
 MultiIndex(x, ...)
@@ -31,4 +31,3 @@ A character vector.
 \description{
 A kudgey way of constructing a multi-element key as a character vector.
 }
-

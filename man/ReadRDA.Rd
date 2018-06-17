@@ -15,4 +15,3 @@ List of (named) contents of RDA file.
 \description{
 Load RDA (.rda) file and return contents as a list.
 }
-

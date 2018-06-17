@@ -48,7 +48,7 @@ Flip <- function(fn, pos) {
 
   args <- formals(fn)
   if(missing(pos)) {
-    pos <- setdiff(rev(seq(length(args))), grep("...", names(args)))
+    pos <- setdiff(rev(seq(length(args))), grep("...", names(args), fixed=TRUE))
   } else if(is.character(pos)) {
     pos <- sapply(sprintf("^%s$", pos), grep, names(args), USE.NAMES=FALSE)
   }

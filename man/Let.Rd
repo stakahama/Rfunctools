@@ -26,4 +26,3 @@ with(list(x=2, y=3), z*(x+y))
 ## we can write
 Let(x=2, y=3, z*(x+y))
 }
-

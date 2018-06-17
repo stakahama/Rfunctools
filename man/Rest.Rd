@@ -15,4 +15,3 @@ collection with first element removed
 \description{
 Rest
 }
-

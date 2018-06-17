@@ -29,4 +29,3 @@ attr(var.2,"id") <- id.float
 
 PreserveAttr("id")(rbind,var.1,var.2)
 }
-

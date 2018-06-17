@@ -24,4 +24,3 @@ Populates environment with functions in a file or directory.
 \details{
 This function provides a means of keeping functions (and data) in separate namespaces. Creates and attaches named environment to search() path if it doesn't already exist.
 }
-

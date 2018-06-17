@@ -57,4 +57,3 @@ ix(Df)
 
 Map(Itemgetter(2), list(List, Df, Mat))
 }
-

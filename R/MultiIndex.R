@@ -32,19 +32,24 @@ MultiIndex.matrix <- function(x, ...) {
 #' @rdname MultiIndex
 #' @export
 
-MultiIndex.data.frame <- function(x, ...) {
-  ## do.call(partial(mapply, compose(MultiIndex, c)), unname(x))
-  ## do.call(partial(mapply, compose(function(x) MultiIndex(x, ...), c)), unname(x))
-  ## fn <- purrr::compose(function(x) MultiIndex(x, ...), c)
-  dotargs <- list(...)
-  fn <- function(...) do.call(MultiIndex, c(list(c(...)), dotargs))
-  do.call(partial(mapply, fn), unname(x))
-}
+## This converts factors to integers so use MultiIndex.matrix instead
+## MultiIndex.data.frame <- function(x, ...) {
+##   ## do.call(partial(mapply, compose(MultiIndex, c)), unname(x))
+##   ## do.call(partial(mapply, compose(function(x) MultiIndex(x, ...), c)), unname(x))
+##   ## fn <- purrr::compose(function(x) MultiIndex(x, ...), c)
+##   dotargs <- list(...)
+##   fn <- function(...) do.call(MultiIndex, c(list(c(...)), dotargs))
+##   do.call(partial(mapply, fn), unname(x))
+## }
+
+MultiIndex.data.frame <- function(x, ...)
+  MultiIndex(as.matrix(x), ...)
 
 #' @rdname MultiIndex
 #' @export
 
-MultiIndex.list <- MultiIndex.data.frame
+MultiIndex.list <- function(x, ...)
+  MultiIndex(as.data.frame(x, stringsAsFactors=FALSE), ...)
 
 #' ParseIndex2dataframe
 #'
@@ -58,17 +63,26 @@ MultiIndex.list <- MultiIndex.data.frame
 #' @return A character vector.
 #' @export
 
-ParseIndex2dataframe <- function(x, sep=", ", names=NULL, type.convert=TRUE) {
+ParseIndex2dataframe <- function(x, ...)
+  UseMethod("ParseIndex2dataframe")
+
+#' @rdname ParseIndex2dataframe
+#' @export
+
+ParseIndex2dataframe.default <- function(x, sep=", ", names=NULL, type.convert=TRUE) {
+  if(is.factor(x))
+    x <- as.character(x)
+  ##
   df <- as.data.frame(
     do.call(rbind, strsplit(sub("^\\((.+)\\)$", "\\1", x), sep)),
     stringsAsFactors=FALSE,
     check.names=FALSE,
     row.names=if(anyDuplicated(x) > 0) NULL else x
   )
+  ##
   if(is.character(names))
     base::names(df) <- names
   if(type.convert)
     df[] <- lapply(df, utils::type.convert, as.is=TRUE)
   df
 }
-

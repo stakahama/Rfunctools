@@ -2,10 +2,10 @@
 % Please edit documentation in R/split.R
 \name{Split}
 \alias{Split}
-\alias{Splitc}
-\alias{Splitc.matrix}
 \alias{Splitr}
 \alias{Splitr.matrix}
+\alias{Splitc}
+\alias{Splitc.matrix}
 \title{Splitr, Splitc}
 \usage{
 Splitr(x, ...)
@@ -27,4 +27,3 @@ Splitc(x, ...)
 \description{
 Split matrix by row or column
 }
-

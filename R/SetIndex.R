@@ -34,11 +34,19 @@ SetIndex <- function(x, ...)
 #' @describeIn SetIndex Sets row name to value of \code{index} and removes \code{index} from matix/data frame.
 #' @export
 
-SetIndex.default <- function(x, index=names(x)[1]) {
-  rownames(x) <- x[,index]
-  jj <- (if(is.numeric(index)) -index else setdiff(colnames(x), index))
+SetIndex.default <- function(x, index=colnames(x)[1]) {
+  rownames(x) <- if(length(index) > 1) MultiIndex(x[index]) else x[[index]]
+  jj <- setdiff(colnames(x), if(is.numeric(index)) colnames(x)[index]  else index)
   x[,jj,drop=FALSE]
 }
+
+#' @describeIn SetIndex Converts tibble object (which does not accept row names) to data frame before applying \code{SetIndex.default}.
+#' @export
+
+SetIndex.tbl_df<- function(x, ...) {
+  SetIndex(as.data.frame(x), ...)
+}
+
 
 #' @rdname SetIndex
 #' @export

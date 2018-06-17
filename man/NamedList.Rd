@@ -20,4 +20,3 @@ Automatically label list elements if names are not provided
 a <- 3
 out <- NamedList(a, b=1)
 }
-

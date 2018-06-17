@@ -2,9 +2,13 @@
 % Please edit documentation in R/MultiIndex.R
 \name{ParseIndex2dataframe}
 \alias{ParseIndex2dataframe}
+\alias{ParseIndex2dataframe.default}
 \title{ParseIndex2dataframe}
 \usage{
-ParseIndex2dataframe(x, sep = ", ", names = NULL, type.convert = TRUE)
+ParseIndex2dataframe(x, ...)
+
+\method{ParseIndex2dataframe}{default}(x, sep = ", ", names = NULL,
+  type.convert = TRUE)
 }
 \arguments{
 \item{x}{Vector of MultiIndex}
@@ -21,4 +25,3 @@ A character vector.
 \description{
 Create data frame from MultiIndex.
 }
-

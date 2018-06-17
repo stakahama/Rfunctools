@@ -27,4 +27,3 @@ Flip(Foo,"z")
 Flip(Foo,2:3)
 Flip(Foo,c("y","z"))
 }
-
