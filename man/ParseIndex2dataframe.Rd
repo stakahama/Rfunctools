@@ -7,8 +7,7 @@
 \usage{
 ParseIndex2dataframe(x, ...)
 
-\method{ParseIndex2dataframe}{default}(x, sep = ", ", names = NULL,
-  type.convert = TRUE)
+\method{ParseIndex2dataframe}{default}(x, sep = ", ", names = NULL, type.convert = TRUE)
 }
 \arguments{
 \item{x}{Vector of MultiIndex}

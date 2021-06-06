@@ -7,4 +7,4 @@ Depends:
     R (>= 3.2.3)
 License: GPLv3
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 7.1.1

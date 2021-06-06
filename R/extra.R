@@ -51,3 +51,29 @@ PreserveAttr <- function(.which) function(fn,...) {
   out <- fn(...)
   `attr<-`(out,.which,attr(arg.first,.which))
 }
+
+
+#' AssignAttr
+#'
+#' Applies arbitrary setter functions to an object within a local scope and returns the object with attributes set.
+#' 
+#' @param x object
+#' @param attr name of attribute (character)
+#' @param value value of attribute
+#'
+#' @return The same object with attribute set to desired value.
+#'
+#' @export
+#'
+#' @examples
+#'
+#' a <- cbind(1:2)
+#' colnames(a) <- "numbers"
+#' print(a)
+#'
+#' b <- AssignAttr(cbind(1:2), "colnames", "numbers")
+#'
+
+AssignAttr <- function(x, attr, value) {
+  get(paste0(attr, "<-"))(force(x), value)
+}
